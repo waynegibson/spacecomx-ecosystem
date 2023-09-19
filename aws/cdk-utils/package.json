@@ -1,0 +1,25 @@
+{
+  "name": "@spacecomx/cdk-utils",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "clean": "rm -rf dist",
+    "clean:all": "pnpm clean && rm -rf node_modules"
+  },
+  "devDependencies": {
+    "@spacecomx/eslint-config-antfu": "workspace:*",
+    "@types/node": "20.6.2",
+    "tsup": "^7.2.0",
+    "typescript": "~5.2.2"
+  },
+  "dependencies": {
+    "ts-deepmerge": "^6.2.0"
+  }
+}
