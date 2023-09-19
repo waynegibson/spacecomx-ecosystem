@@ -1,6 +1,6 @@
-# rockridgestud-ecosystem
+# spacecomx-ecosystem
 
-The Rockridge Stud ecosystem consists of a set of interconnected software products and services.
+The Spacecomx, LLC ecosystem consists of a set of interconnected software products and services.
 
 ## Installation
 
