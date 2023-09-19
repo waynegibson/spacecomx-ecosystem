@@ -1,6 +1,6 @@
 {
   "name": "@spacecomx/cdk-cost-usage-report-bucket",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "bin": {
     "main": "dist/bin/index.js",
     "types": "dist/lib/index.d.ts"

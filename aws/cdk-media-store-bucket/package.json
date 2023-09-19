@@ -1,6 +1,6 @@
 {
   "name": "@spacecomx/cdk-media-store-bucket",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "bin": {
     "main": "dist/bin/index.js",

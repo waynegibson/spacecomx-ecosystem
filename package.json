@@ -5,10 +5,13 @@
   "scripts": {
     "build": "pnpm -r run build",
     "test": "pnpm -r run test",
+    "changeset": "changeset add",
+    "bump": "changeset version",
     "clean": "pnpm -r clean",
     "clean:all": "pnpm -r clean:all && rm pnpm-lock.yaml && rm -rf node_modules"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.26.2",
     "@spacecomx/eslint-config-antfu": "workspace:*",
     "@types/node": "^20.6.2",
     "typescript": "^5.2.2"
