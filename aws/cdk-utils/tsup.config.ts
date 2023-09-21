@@ -9,6 +9,6 @@ export default defineConfig((options) => {
     entry: ['src/index.ts'],
     format: ['cjs', 'esm'],
     minify: isProd,
-    sourcemap: true,
+    sourcemap: true
   }
 })

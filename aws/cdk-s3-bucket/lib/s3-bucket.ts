@@ -16,7 +16,7 @@ export interface S3BucketProps {
 export class S3Bucket extends Construct {
   public readonly s3Bucket: s3.Bucket
 
-  constructor(scope: Construct, id: string, props: S3BucketProps = {}) {
+  constructor (scope: Construct, id: string, props: S3BucketProps = {}) {
     super(scope, id)
 
     const combinedBucketProps = consolidateProps(DefaultS3Props(), props.bucketProps)

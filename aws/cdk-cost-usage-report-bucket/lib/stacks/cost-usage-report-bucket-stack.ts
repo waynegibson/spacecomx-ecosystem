@@ -16,7 +16,7 @@ export interface CostUsageReportBucketStackProps extends cdk.StackProps {
 }
 
 export class CostUsageReportBucketStack extends cdk.Stack {
-  constructor(scope: Construct, id: string, props?: CostUsageReportBucketStackProps) {
+  constructor (scope: Construct, id: string, props?: CostUsageReportBucketStackProps) {
     super(scope, id, props)
 
     let customBucketProps: S3BucketProps
@@ -27,15 +27,14 @@ export class CostUsageReportBucketStack extends cdk.Stack {
         bucketProps: {
           versioned: false,
           removalPolicy: cdk.RemovalPolicy.DESTROY,
-          autoDeleteObjects: true,
-        },
+          autoDeleteObjects: true
+        }
       }
-    }
-    else {
+    } else {
       customBucketProps = {
         bucketProps: {
-          versioned: false,
-        },
+          versioned: false
+        }
       }
     }
 
@@ -44,11 +43,11 @@ export class CostUsageReportBucketStack extends cdk.Stack {
     const targetBucketArn = s3Bucket.bucketArn
 
     new cdk.CfnOutput(this, 'CostUsageReportBucketName', {
-      value: targetBucketName,
+      value: targetBucketName
     })
 
     new cdk.CfnOutput(this, 'CostUsageReportBucketArn', {
-      value: targetBucketArn,
+      value: targetBucketArn
     })
 
     /**
@@ -60,46 +59,45 @@ export class CostUsageReportBucketStack extends cdk.Stack {
       new iam.PolicyStatement({
         effect: iam.Effect.ALLOW,
         principals: [
-          new iam.ServicePrincipal('billingreports.amazonaws.com'),
+          new iam.ServicePrincipal('billingreports.amazonaws.com')
         ],
         actions: [
           's3:GetBucketAcl',
-          's3:GetBucketPolicy',
+          's3:GetBucketPolicy'
         ],
         resources: [
-          `arn:aws:s3:::${targetBucketName}`,
+          `arn:aws:s3:::${targetBucketName}`
         ],
         conditions: {
           StringEquals: {
             'aws:SourceArn': `arn:aws:cur:us-east-1:${accountId}:definition/*`,
-            'aws:SourceAccount': `${accountId}`,
-          },
-        },
-      }),
+            'aws:SourceAccount': `${accountId}`
+          }
+        }
+      })
     )
 
     const policyStatement2 = s3Bucket.addToResourcePolicy(
       new iam.PolicyStatement({
         effect: iam.Effect.ALLOW,
         principals: [
-          new iam.ServicePrincipal('billingreports.amazonaws.com'),
+          new iam.ServicePrincipal('billingreports.amazonaws.com')
         ],
         actions: [
-          's3:PutObject',
+          's3:PutObject'
         ],
         resources: [
-            `arn:aws:s3:::${targetBucketName}/*`,
+          `arn:aws:s3:::${targetBucketName}/*`
         ],
         conditions: {
           StringEquals: {
             'aws:SourceArn': `arn:aws:cur:us-east-1:${accountId}:definition/*`,
-            'aws:SourceAccount': `${accountId}`,
-          },
-        },
-      }),
+            'aws:SourceAccount': `${accountId}`
+          }
+        }
+      })
     )
 
-    if (!policyStatement1.statementAdded || !policyStatement2.statementAdded)
-      throw new Error('Resource policy statement(s) not added')
+    if (!policyStatement1.statementAdded || !policyStatement2.statementAdded) { throw new Error('Resource policy statement(s) not added') }
   }
 }

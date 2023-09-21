@@ -18,6 +18,3 @@ dist
 
 # vercel
 .vercel
-
-# custom
-!.eslintrc.js

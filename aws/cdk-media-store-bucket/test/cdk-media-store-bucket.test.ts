@@ -7,7 +7,7 @@ describe('Media store stack -', () => {
     const app = new cdk.App()
 
     const stack = new MediaStoreBucketStack(app, 'test-media-store-bucket-stack', {
-      environment: 'dev',
+      environment: 'dev'
     })
 
     const t = Template.fromStack(stack)
@@ -19,22 +19,22 @@ describe('Media store stack -', () => {
         ServerSideEncryptionConfiguration: [
           {
             ServerSideEncryptionByDefault: {
-              SSEAlgorithm: 'AES256',
-            },
-          },
-        ],
+              SSEAlgorithm: 'AES256'
+            }
+          }
+        ]
       },
       PublicAccessBlockConfiguration: {
         BlockPublicAcls: true,
         BlockPublicPolicy: true,
         IgnorePublicAcls: true,
-        RestrictPublicBuckets: true,
-      },
+        RestrictPublicBuckets: true
+      }
     })
 
     t.hasResource('AWS::S3::Bucket', {
       DeletionPolicy: 'Delete',
-      UpdateReplacePolicy: 'Delete',
+      UpdateReplacePolicy: 'Delete'
     })
 
     t.hasResourceProperties('AWS::Lambda::Function', {
@@ -44,12 +44,12 @@ describe('Media store stack -', () => {
           [
             'Lambda function for auto-deleting objects in ',
             {
-              Ref: 'S3Bucket07682993',
+              Ref: 'S3Bucket07682993'
             },
-            ' S3 bucket.',
-          ],
-        ],
-      },
+            ' S3 bucket.'
+          ]
+        ]
+      }
     })
   })
 
@@ -57,7 +57,7 @@ describe('Media store stack -', () => {
     const app = new cdk.App()
 
     const stack = new MediaStoreBucketStack(app, 'test-media-store-bucket-stack', {
-      environment: 'prod',
+      environment: 'prod'
     })
 
     const t = Template.fromStack(stack)
@@ -69,22 +69,22 @@ describe('Media store stack -', () => {
         ServerSideEncryptionConfiguration: [
           {
             ServerSideEncryptionByDefault: {
-              SSEAlgorithm: 'AES256',
-            },
-          },
-        ],
+              SSEAlgorithm: 'AES256'
+            }
+          }
+        ]
       },
       PublicAccessBlockConfiguration: {
         BlockPublicAcls: true,
         BlockPublicPolicy: true,
         IgnorePublicAcls: true,
-        RestrictPublicBuckets: true,
-      },
+        RestrictPublicBuckets: true
+      }
     })
 
     t.hasResource('AWS::S3::Bucket', {
       DeletionPolicy: 'Retain',
-      UpdateReplacePolicy: 'Retain',
+      UpdateReplacePolicy: 'Retain'
     })
   })
 })

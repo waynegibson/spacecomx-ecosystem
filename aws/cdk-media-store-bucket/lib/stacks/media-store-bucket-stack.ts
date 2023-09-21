@@ -1,3 +1,4 @@
+/* eslint-disable no-new */
 import * as cdk from 'aws-cdk-lib'
 import type { Construct } from 'constructs'
 import { S3Bucket, type S3BucketProps } from '@spacecomx/cdk-s3-bucket'
@@ -29,7 +30,7 @@ export interface MediaStoreBucketStackProps extends cdk.StackProps {
  * ```
  */
 export class MediaStoreBucketStack extends cdk.Stack {
-  constructor(scope: Construct, id: string, props?: MediaStoreBucketStackProps) {
+  constructor (scope: Construct, id: string, props?: MediaStoreBucketStackProps) {
     super(scope, id, props)
 
     let customBucketProps: S3BucketProps
@@ -39,15 +40,14 @@ export class MediaStoreBucketStack extends cdk.Stack {
         bucketProps: {
           versioned: false,
           removalPolicy: cdk.RemovalPolicy.DESTROY,
-          autoDeleteObjects: true,
-        },
+          autoDeleteObjects: true
+        }
       }
-    }
-    else {
+    } else {
       customBucketProps = {
         bucketProps: {
-          versioned: false,
-        },
+          versioned: false
+        }
       }
     }
 
@@ -56,31 +56,32 @@ export class MediaStoreBucketStack extends cdk.Stack {
     const targetBucketArn = s3Bucket.bucketArn
 
     new cdk.CfnOutput(this, 'MediaStoreBucketName', {
-      value: targetBucketName,
+      value: targetBucketName
     })
 
     new cdk.CfnOutput(this, 'MediaStoreBucketArn', {
-      value: targetBucketArn,
+      value: targetBucketArn
     })
 
     const { group, user } = new CDNProviderAccessPolicy(this, 'CDNProviderAccessPolicy', {
       sourceBucket: s3Bucket,
-      createIamUser: props?.createIamUser ?? true,
+      createIamUser: props?.createIamUser ?? true
     })
 
     new cdk.CfnOutput(this, 'CDNProviderGroupName', {
-      value: group.groupName,
+      value: group.groupName
     })
+
     new cdk.CfnOutput(this, 'CDNProviderGroupArn', {
-      value: group.groupArn,
+      value: group.groupArn
     })
 
     if (user !== undefined) {
       new cdk.CfnOutput(this, 'CDNProviderUserName', {
-        value: user.userName,
+        value: user.userName
       })
       new cdk.CfnOutput(this, 'CDNProviderUserArn', {
-        value: user.userArn,
+        value: user.userArn
       })
     }
   }

@@ -7,7 +7,7 @@ dotenv.config()
 export const config = {
   env: {
     account: env.AWS_ACCOUNT_ID,
-    region: env.AWS_ACCOUNT_REGION ?? 'us-east-1',
+    region: env.AWS_ACCOUNT_REGION ?? 'us-east-1'
   },
-  environment: env.AWS_DEPLOY_ENVIRONMENT as EnvironmentType ?? 'dev',
+  environment: env.AWS_DEPLOY_ENVIRONMENT as EnvironmentType ?? 'dev'
 }

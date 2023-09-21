@@ -3,8 +3,10 @@
   "private": true,
   "packageManager": "pnpm@8.7.4",
   "scripts": {
-    "build": "pnpm -r run build",
-    "test": "pnpm -r --workspace-concurrency test",
+    "build": "pnpm -r --workspace-concurrency=1 build",
+    "test": "pnpm -r --workspace-concurrency=1 test",
+    "lint": "pnpm -r --workspace-concurrency=1 lint",
+    "lint:fix": "pnpm -r --workspace-concurrency=1 lint:fix",
     "changeset": "changeset add",
     "bump": "changeset version",
     "clean": "pnpm -r clean",
@@ -12,8 +14,9 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.2",
-    "@spacecomx/eslint-config-antfu": "workspace:*",
-    "@types/node": "^20.6.2",
-    "typescript": "^5.2.2"
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
+    "@commitlint/config-pnpm-scopes": "^17.7.0",
+    "husky": "^8.0.3"
   }
 }

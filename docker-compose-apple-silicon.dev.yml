@@ -1,0 +1,33 @@
+name: ${DOCKER_CONTAINER_NAME-acme}
+
+services:
+  postgresql:
+    image: arm64v8/postgres:15-alpine
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${DOCKER_DB_PASSWORD-secret}
+
+  mysql:
+    image: arm64v8/mysql:8-oracle
+    volumes:
+      - mysql-data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DOCKER_DB_PASSWORD-secret}
+
+  redis:
+    image: arm64v8/redis:7.0.10-alpine
+    volumes: 
+      - redis-data:/data
+    ports:
+      - 6379:6379
+
+volumes:
+  postgres-data:
+  mysql-data:
+  redis-data:

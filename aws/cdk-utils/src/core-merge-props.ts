@@ -1,32 +1,25 @@
 import merge from 'ts-deepmerge'
 
-function isObject(val: object) {
-  return val != null
-    && typeof val === 'object'
-    && Object.prototype.toString.call(val) === '[object Object]'
+function isObject (val: object): boolean {
+  return val != null && typeof val === 'object' && Object.prototype.toString.call(val) === '[object Object]'
 }
 
-function isPlainObject(o: object) {
-  if (Array.isArray(o) === true)
-    return true
+function isPlainObject (o: object): boolean {
+  if (Array.isArray(o)) { return true }
 
-  if (isObject(o) === false)
-    return false
+  if (!isObject(o)) { return false }
 
   // If has modified constructor
   const ctor = o.constructor
-  if (typeof ctor !== 'function')
-    return false
+  if (typeof ctor !== 'function') { return false }
 
   // If has modified prototype
   const prot = ctor.prototype
-  if (isObject(prot) === false)
-    return false
+  if (!isObject(prot)) { return false }
 
   // If constructor does not have an Object-specific method
   // eslint-disable-next-line no-prototype-builtins
-  if (prot.hasOwnProperty('isPrototypeOf') === false)
-    return false
+  if (prot.hasOwnProperty('isPrototypeOf') === false) { return false }
 
   // Most likely a plain Object
   return true
@@ -37,17 +30,16 @@ function isPlainObject(o: object) {
  *
  * Override the sensible defaults with user provided props
  */
-export function overrideProps(DefaultProps: object, userProps: object, concatArray = false): any {
+export function overrideProps (DefaultProps: object, userProps: object, concatArray = false): any {
   if (concatArray) {
     return merge(DefaultProps, userProps, {
       arrayMerge: (destinationArray: string | any[], sourceArray: any) => destinationArray.concat(sourceArray),
-      isMergeableObject: isPlainObject,
+      isMergeableObject: isPlainObject
     })
-  }
-  else {
+  } else {
     return merge(DefaultProps, userProps, {
       arrayMerge: (_destinationArray: any, sourceArray: any) => sourceArray, // underscore allows arg to be ignored
-      isMergeableObject: isPlainObject,
+      isMergeableObject: isPlainObject
     })
   }
 }
@@ -65,14 +57,12 @@ export function overrideProps(DefaultProps: object, userProps: object, concatArr
  *  2) clientProps value
  *  3) defaultProps value
  */
-export function consolidateProps(defaultProps: object, clientProps?: object, constructProps?: object, concatArray = false): any {
+export function consolidateProps (defaultProps: object, clientProps?: object, constructProps?: object, concatArray = false): any {
   let result: object = defaultProps
 
-  if (clientProps)
-    result = overrideProps(result, clientProps, concatArray)
+  if (clientProps != null) { result = overrideProps(result, clientProps, concatArray) }
 
-  if (constructProps)
-    result = overrideProps(result, constructProps, concatArray)
+  if (constructProps != null) { result = overrideProps(result, constructProps, concatArray) }
 
   return result
 }

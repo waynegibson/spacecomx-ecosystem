@@ -1,3 +1,4 @@
+/* eslint-disable no-new */
 import { Stack } from 'aws-cdk-lib'
 import { Template } from 'aws-cdk-lib/assertions'
 import * as s3 from 'aws-cdk-lib/aws-s3'
@@ -10,7 +11,7 @@ describe('CDN provider access policy construct for the media bucket -', () => {
     const bucket = new s3.Bucket(stack, 'test-bucket', {})
 
     new CDNProviderAccessPolicy(stack, 'test-cdn-provider-access-policy', {
-      sourceBucket: bucket,
+      sourceBucket: bucket
     })
 
     const t = Template.fromStack(stack)
@@ -28,12 +29,12 @@ describe('CDN provider access policy construct for the media bucket -', () => {
             Action: [
               's3:GetObject',
               's3:ListBucket',
-              's3:GetBucketLocation',
+              's3:GetBucketLocation'
             ],
-            Effect: 'Allow',
-          },
-        ],
-      },
+            Effect: 'Allow'
+          }
+        ]
+      }
     })
   })
 
@@ -44,7 +45,7 @@ describe('CDN provider access policy construct for the media bucket -', () => {
 
     new CDNProviderAccessPolicy(stack, 'test-cdn-provider-access-policy', {
       sourceBucket: bucket,
-      createIamUser: false,
+      createIamUser: false
     })
 
     const t = Template.fromStack(stack)

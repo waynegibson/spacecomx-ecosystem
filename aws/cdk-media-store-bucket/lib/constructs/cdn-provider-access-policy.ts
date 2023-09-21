@@ -1,3 +1,4 @@
+/* eslint-disable no-new */
 import { Construct } from 'constructs'
 import * as iam from 'aws-cdk-lib/aws-iam'
 import type { Bucket } from 'aws-cdk-lib/aws-s3'
@@ -25,7 +26,7 @@ export class CDNProviderAccessPolicy extends Construct {
   public readonly group: iam.Group
   public readonly user: iam.User | undefined
 
-  constructor(scope: Construct, id: string, props: CDNProviderAccessPolicyProps) {
+  constructor (scope: Construct, id: string, props: CDNProviderAccessPolicyProps) {
     super(scope, id)
 
     const bucket = props.sourceBucket
@@ -41,20 +42,20 @@ export class CDNProviderAccessPolicy extends Construct {
           actions: [
             's3:GetObject',
             's3:ListBucket',
-            's3:GetBucketLocation',
+            's3:GetBucketLocation'
           ],
           resources: [
             `${bucket.bucketArn}`,
-            `${bucket.bucketArn}/*`,
-          ],
-        }),
-      ],
+            `${bucket.bucketArn}/*`
+          ]
+        })
+      ]
     })
 
     // Create a new user if the user is not created
-    if (props?.createIamUser === undefined || props.createIamUser === true) {
+    if (props?.createIamUser === undefined || props.createIamUser) {
       this.user = new iam.User(this, 'User', {
-        groups: [this.group],
+        groups: [this.group]
       })
     }
   }

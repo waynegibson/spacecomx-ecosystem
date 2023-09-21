@@ -6,7 +6,7 @@ import { S3Bucket } from '../lib'
 describe('Default S3 Bucket construct -', () => {
   test('it should create a default s3 bucket.', () => {
     const stack = new Stack()
-    
+
     new S3Bucket(stack, 'test-s3-bucket', {})
 
     const t = Template.fromStack(stack)
@@ -18,22 +18,22 @@ describe('Default S3 Bucket construct -', () => {
         ServerSideEncryptionConfiguration: [
           {
             ServerSideEncryptionByDefault: {
-              SSEAlgorithm: 'AES256',
-            },
-          },
-        ],
+              SSEAlgorithm: 'AES256'
+            }
+          }
+        ]
       },
       PublicAccessBlockConfiguration: {
         BlockPublicAcls: true,
         BlockPublicPolicy: true,
         IgnorePublicAcls: true,
-        RestrictPublicBuckets: true,
-      },
+        RestrictPublicBuckets: true
+      }
     })
 
     t.hasResource('AWS::S3::Bucket', {
       DeletionPolicy: 'Retain',
-      UpdateReplacePolicy: 'Retain',
+      UpdateReplacePolicy: 'Retain'
     })
   })
 })
