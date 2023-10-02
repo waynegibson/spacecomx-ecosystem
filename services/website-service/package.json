@@ -1,0 +1,24 @@
+{
+  "name": "@spacecomx/website-service",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "platformatic start",
+    "build": "platformatic compile",
+    "migrate": "platformatic db migrations apply",
+    "test": "tsc && node --test dist/test/*/*.test.js",
+    "clean": "rm -fr ./dist",
+    "clean:all": "pnpm clean && rm -rf node_modules"
+  },
+  "devDependencies": {
+    "fastify": "^4.23.2",
+    "typescript": "~5.2.0"
+  },
+  "dependencies": {
+    "platformatic": "^1.0.0",
+    "@platformatic/db": "^1.0.0"
+  },
+  "engines": {
+    "node": "^18.8.0 || >=20.6.0"
+  }
+}

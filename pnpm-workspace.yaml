@@ -2,5 +2,5 @@ packages:
   - "aws/*"
   - "apps/*"
   - "packages/*"
-  
+  - "services/*"
   
