@@ -1,6 +1,6 @@
-# @spacecomx/website-service
+# @spacecomx/marketing-service
 
-The API website service database.
+The API marketing service database.
 
 ## Requirements
 
@@ -12,26 +12,27 @@ You'll need to have [Node.js](https://nodejs.org/) >= v18.8.0 or >= v20.6.0
 1. Install dependencies:
 
 ```bash
-pnpm install
+npm install
 ```
 
 2. Apply migrations:
 
 ```bash
-pnpm run migrate
+npm run migrate
 ```
+
 
 ## Usage
 
 Run the API with:
 
 ```bash
-pnpm start
+npm start
 ```
 
 ### Explore
-- ⚡ The Platformatic DB server is running at http://localhost:3080/
-- 📔 View the REST API's Swagger documentation at http://localhost:3080/documentation/
-- 🔍 Try out the GraphiQL web UI at http://localhost:3080/graphiql
+- ⚡ The Platformatic DB server is running at http://localhost:3042/
+- 📔 View the REST API's Swagger documentation at http://localhost:3042/documentation/
+- 🔍 Try out the GraphiQL web UI at http://localhost:3042/graphiql
 
 

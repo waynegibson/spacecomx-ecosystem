@@ -4,7 +4,7 @@
     "connectionString": "{DATABASE_URL}",
     "graphql": true,
     "openapi": true,
-    "schemalock": false
+    "schemalock": true
   },
   "watch": {
     "ignore": [
@@ -31,7 +31,8 @@
       {
         "path": "./routes"
       }
-    ]
+    ],
+    "typescript": "{PLT_TYPESCRIPT}"
   },
   "types": {
     "autogenerate": true

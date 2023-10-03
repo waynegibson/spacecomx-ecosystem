@@ -1,18 +1,18 @@
 import { join } from 'node:path'
 import { readFile } from 'node:fs/promises'
 import { buildServer } from '@platformatic/db'
-import { createConnectionPool } from '@platformatic/sql-mapper'
 
-const connectionString = 'postgres://postgres:secret@127.0.0.1:5432/db-website-service'
+const { createConnectionPool } = require('@platformatic/sql-mapper')
+const connectionString = 'postgres://postgres:secret@127.0.0.1:5432/postgres'
 let counter = 0
 
-export async function getServer (t: any) {
+export async function getServer (t) {
 
   const { db, sql } = await createConnectionPool({
     log: {
-      trace: () => {},
-      error: () => {},
-      warn: () => {},
+      debug: () => {},
+      info: () => {},
+      trace: () => {}
     },
     connectionString,
     poolSize: 1
@@ -25,7 +25,8 @@ export async function getServer (t: any) {
     CREATE DATABASE ${sql.ident(newDB)}
   `)
 
-  const config = JSON.parse(await readFile(join(__dirname, '..', 'platformatic.db.json'), 'utf8'))
+  // We go up two folder because this files executes in the dist folder
+  const config = JSON.parse(await readFile(join(__dirname, '..', '..', 'platformatic.db.json'), 'utf8'))
   // Add your config customizations here. For example you want to set
   // all things that are set in the config file to read from an env variable
   config.server.logger.level = 'warn'
@@ -50,3 +51,4 @@ export async function getServer (t: any) {
 
   return server
 }
+  

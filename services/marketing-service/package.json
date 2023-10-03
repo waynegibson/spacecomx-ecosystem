@@ -1,5 +1,5 @@
 {
-  "name": "@spacecomx/website-service",
+  "name": "@spacecomx/marketing-service",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "fastify": "^4.23.2",
-    "typescript": "~5.2.0"
+    "typescript": "~5.2.2"
   },
   "dependencies": {
     "platformatic": "^1.0.0",

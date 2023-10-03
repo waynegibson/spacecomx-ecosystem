@@ -1,2 +1,3 @@
+
 -- Add SQL in this file to drop the database tables 
-DROP TABLE  IF EXISTS movies CASCADE;
+DROP TABLE movies;
