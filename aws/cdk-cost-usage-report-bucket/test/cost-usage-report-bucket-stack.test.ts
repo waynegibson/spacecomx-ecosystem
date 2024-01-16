@@ -91,6 +91,7 @@ describe('S3 cost usage report stack -', () => {
           },
           {
             Action: [
+              's3:PutBucketPolicy',
               's3:GetBucket*',
               's3:List*',
               's3:DeleteObject*'
@@ -205,7 +206,8 @@ describe('S3 cost usage report stack -', () => {
               ]
             }
           }
-        ]
+        ],
+        Version: '2012-10-17'
       }
     })
   })

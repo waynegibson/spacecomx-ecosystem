@@ -16,11 +16,11 @@
     "clean:all": "pnpm clean && rm -rf node_modules"
   },
   "devDependencies": {
-    "@types/node": "20.6.3",
+    "@types/node": "20.11.3",
     "snazzy": "^9.0.0",
     "ts-standard": "^12.0.2",
-    "tsup": "^7.2.0",
-    "typescript": "~5.2.2"
+    "tsup": "^8.0.1",
+    "typescript": "~5.3.3"
   },
   "dependencies": {
     "ts-deepmerge": "^6.2.0"
