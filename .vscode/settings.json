@@ -39,5 +39,10 @@
     "jsonc",
     "yaml",
     "toml"
-  ]
+  ],
+
+  // Javascript standard linter
+  "standard.engine": "ts-standard",
+  "Prettier-SQL.SQLFlavourOverride": "postgresql",
+  "Prettier-SQL.expressionWidth": 50,
 }
