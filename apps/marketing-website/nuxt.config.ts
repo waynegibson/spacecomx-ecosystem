@@ -6,6 +6,8 @@ export default defineNuxtConfig({
   srcDir: 'src/',
 
   modules: [
+    '@nuxt/image',
+    '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
     '@vueuse/nuxt',
   ],
@@ -18,6 +20,21 @@ export default defineNuxtConfig({
       },
       media: {
         basePath: env.NUXT_MEDIA_BASE_PATH,
+      },
+    },
+  },
+
+  tailwindcss: {
+    cssPath: '~/assets/css/tailwind.css',
+    configPath: '~~/tailwind.config.ts',
+  },
+
+  image: {
+    provider: env.MEDIA_CDN_PROVIDER,
+    imgix: {
+      baseURL: env.MEDIA_CDN_PROVIDER_BASE_URL,
+      modifiers: {
+        auto: 'format,compress,enhance',
       },
     },
   },

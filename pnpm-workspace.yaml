@@ -1,6 +1,6 @@
 packages:
-  - "aws/*"
+  - "apis/**/*"
   - "apps/*"
+  - "aws/*"
   - "packages/*"
-  - "services/*"
   

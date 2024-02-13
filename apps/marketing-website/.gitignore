@@ -22,3 +22,11 @@ logs
 .env
 .env.*
 !.env.example
+
+# mock files
+src/**/mocks
+src/**/mock*.ts
+src/**/mock*.vue
+
+# media files
+src/public/media/*

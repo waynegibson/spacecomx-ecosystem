@@ -39,8 +39,8 @@ export class CostUsageReportBucketStack extends cdk.Stack {
     }
 
     const { s3Bucket } = new S3Bucket(this, 'CostUsageReportBucket', customBucketProps)
-    const targetBucketName = s3Bucket.bucketName
-    const targetBucketArn = s3Bucket.bucketArn
+    const targetBucketName: string = s3Bucket.bucketName
+    const targetBucketArn: string = s3Bucket.bucketArn
 
     new cdk.CfnOutput(this, 'CostUsageReportBucketName', {
       value: targetBucketName

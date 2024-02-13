@@ -2,7 +2,7 @@ name: ${DOCKER_CONTAINER_NAME-acme}
 
 services:
   postgresql:
-    image: arm64v8/postgres:15-alpine
+    image: arm64v8/postgres:16.1-alpine
     volumes:
       - postgres-data:/var/lib/postgresql/data
     ports:
@@ -12,7 +12,7 @@ services:
       POSTGRES_PASSWORD: ${DOCKER_DB_PASSWORD-secret}
 
   mysql:
-    image: arm64v8/mysql:8-oracle
+    image: arm64v8/mysql:8.3.0-oracle
     volumes:
       - mysql-data:/var/lib/mysql
     ports:
@@ -21,7 +21,7 @@ services:
       MYSQL_ROOT_PASSWORD: ${DOCKER_DB_PASSWORD-secret}
 
   redis:
-    image: arm64v8/redis:7.0.10-alpine
+    image: arm64v8/redis:7.2.4-alpine
     volumes: 
       - redis-data:/data
     ports:
